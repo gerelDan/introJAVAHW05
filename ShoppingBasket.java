@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /*
 Задача 3. Подсчет продуктов в корзине
 Создайте программу для учета продуктов в корзине. Программа должна
@@ -18,4 +20,29 @@
 
  */
 public class ShoppingBasket {
+    private static HashMap<String, Integer> basket = new HashMap<>();
+
+    public static void addProduct(String product, Integer quantity){
+        if (basket.containsKey(product)){
+            basket.put(product, basket.get(product) + quantity);
+        } else basket.put(product, quantity);
+    }
+    public static void removeProduct(String product){
+        if (basket.containsKey(product)){
+            basket.remove(product);
+        }
+    }
+    public static void updateQuantity(String product, Integer quantity){
+        if (basket.containsKey(product)){
+            basket.put(product, basket.get(product) + quantity);
+        }
+    }
+    public static int checkProduct(String product){
+        return basket.getOrDefault(product, 0);
+
+
+    }
+    public static void showBasket(){
+        System.out.println(basket);
+    }
 }
